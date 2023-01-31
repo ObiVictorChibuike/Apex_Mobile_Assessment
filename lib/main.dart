@@ -1,6 +1,4 @@
-import 'package:assessment/presentation/modules/auth/login/controller/controller.dart';
 import 'package:assessment/presentation/modules/auth/login/view/login.dart';
-import 'package:assessment/presentation/modules/auth/registration/controller/controller.dart';
 import 'package:assessment/presentation/modules/intro/pages/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
