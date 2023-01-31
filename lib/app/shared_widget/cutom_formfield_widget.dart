@@ -49,26 +49,26 @@ class FormFieldWidget extends StatelessWidget {
         hintStyle: hintTextStyle ?? Theme.of(context).textTheme.bodyText2?.copyWith(color: const Color(0xff868484), fontSize: 16),
         labelStyle: labelStyle ?? Theme.of(context).textTheme.bodyText2?.copyWith(color: const Color(0xff868484), fontSize: 16),
         enabledBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-            borderSide: BorderSide(color: kGrayScale1, width: 0.7)
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+            borderSide: BorderSide(color: athensGray, width: 0.7)
         ),
         focusedBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-            borderSide: BorderSide(color: kGrayScale1, width: 0.7)
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+            borderSide: BorderSide(color: athensGray, width: 0.7)
         ),
         focusedErrorBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-            borderSide: BorderSide(color: kGrayScale1, width: 0.7)
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+            borderSide: BorderSide(color: athensGray, width: 0.7)
         ),
         border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-            borderSide: BorderSide(color: kGrayScale1, width: 0.7)
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+            borderSide: BorderSide(color: athensGray, width: 0.7)
         ),
         errorBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-            borderSide: BorderSide(color: kGrayScale1, width: 0.7)
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+            borderSide: BorderSide(color: athensGray, width: 0.7)
         ),
-        fillColor: kGrayScale1,
+        fillColor: athensGray,
         filled: true, isDense: true,
         contentPadding: const EdgeInsets.all(15),
       ),

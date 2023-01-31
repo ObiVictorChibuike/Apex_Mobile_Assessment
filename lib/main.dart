@@ -1,6 +1,7 @@
-import 'package:assessment/presentation/modules/auth/sign_up/view/sign_up.dart';
-import 'package:assessment/presentation/modules/dashboard/home/views/home_screen.dart';
-import 'package:assessment/presentation/modules/intro_screens/onboarding/views/onboarding_screen.dart';
+import 'package:assessment/presentation/modules/auth/login/controller/controller.dart';
+import 'package:assessment/presentation/modules/auth/login/view/login.dart';
+import 'package:assessment/presentation/modules/auth/registration/controller/controller.dart';
+import 'package:assessment/presentation/modules/intro/pages/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart'show kIsWeb;
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
           debugShowCheckedModeBanner: false,
           theme: AppTheme.applicationTheme(),
-          home: loginStatus == true ?  const HomeScreen() : const SignUp(),
+          home: loginStatus == true ?  const LoginScreen() : const OnBoardingScreen(),
           //const OnBoardingScreen()
       ),
     );

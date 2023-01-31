@@ -33,8 +33,12 @@ dependencies:
   font_awesome_flutter: ^10.1.0
   lottie: ^1.4.0
   flutter_svg: ^1.0.3
+  pin_code_fields: ^7.4.0
+  flutter_native_splash: ^2.2.17
   dio: ^4.0.6
   logger: ^1.1.0
+  device_information: ^0.0.4
+  country_picker: ^2.0.19
   shared_preferences: ^2.0.15
   ndialog: ^4.1.1+1
   another_flushbar: 1.10.28
@@ -50,6 +54,15 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/png_images/logo.png
+  android_12:
+  android: true
+  android_gravity: center
+  ios_content_mode: center
+  ios: true
+  fullscreen: true
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

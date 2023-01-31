@@ -21,47 +21,11 @@ class AppTheme{
     return ThemeData(
       primarySwatch: materialColor,
       fontFamily: "KumbhSans",
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: Color(0xff6DE7B4),
-      ),
-      errorColor: Colors.red,
       textSelectionTheme: const TextSelectionThemeData(
-          cursorColor: kWhite,
-          selectionColor: kWhite,
-          selectionHandleColor: kWhite
+          cursorColor: white,
+          selectionColor: white,
+          selectionHandleColor: white
       ),
-    );
-  }
-
-  phoneNumberFieldInputDecoration({required BuildContext context}){
-    return InputDecoration(
-      alignLabelWithHint: true,
-      floatingLabelBehavior: FloatingLabelBehavior.never,
-      hintText: "Phone Number",
-      hintStyle: Theme.of(context).textTheme.bodyText2?.copyWith(color: const Color(0xff868484), fontSize: 16),
-      enabledBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-          borderSide: BorderSide(color: Colors.transparent, width: 0.7)
-      ),
-      focusedBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-          borderSide: BorderSide(color: Colors.transparent, width: 0.7)
-      ),
-      focusedErrorBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-          borderSide: BorderSide(color: Colors.transparent, width: 0.7)
-      ),
-      border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(4)),
-          borderSide: BorderSide(color: Colors.transparent, width: 0.7)
-      ),
-      errorBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-          borderSide: BorderSide(color: Colors.transparent, width: 0.7)
-      ),
-      fillColor: kDarkBackGroundColor,
-      filled: true, isDense: true,
-      contentPadding: const EdgeInsets.all(15),
     );
   }
 }

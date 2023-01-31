@@ -1,6 +1,14 @@
 import 'package:get/get.dart';
 
 class Validator{
+  /// checks if any fields are empty
+  static String? isRequired(String? value) {
+    if (value == null || value == '') {
+      return 'This field is required';
+    }
+    return null;
+  }
+
   static String? isPhone(String? value) {
     if (value?.isEmpty ?? true) {
       return 'This field is required';
@@ -16,6 +24,16 @@ class Validator{
       return 'This field is required';
     } else if (!GetUtils.isLengthGreaterThan(value, 4)) {
       return 'Please enter a valid Address';
+    }
+    return null;
+  }
+
+  static String? isValidEmailAddress (String? value){
+    final emailAddressRegex = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+    if (value?.isEmpty ?? true) {
+      return 'This field is required';
+    } else if (!emailAddressRegex.hasMatch(value!)) {
+      return 'Please enter a valid email';
     }
     return null;
   }
@@ -68,9 +86,9 @@ class Validator{
 
   static String? isOtp (String? value) {
     if(value!.isEmpty){
-      return "Please enter 4-digit pin";
-    } else if (value.length < 4) {
-      return "Pin must be 4 digits";
+      return "Please enter 6-digit pin";
+    } else if (value.length < 6) {
+      return "Pin must be 6 digits";
     } else {
       return null;
     }

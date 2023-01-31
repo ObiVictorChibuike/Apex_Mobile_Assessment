@@ -1,26 +1,22 @@
 class AssetPath{
+  //Base asset paths
   static const String _svgImageBaseUrl = "assets/svg_images";
   static const String _lottieImageBaseUrl = "assets/lottie_images";
   static const String _pngImageBaseUrl = "assets/png_images";
 
-  //Svg Assets
-  static const String notifications = '$_svgImageBaseUrl/carbon_notification-new.svg';
-  static const String hamburgerIcon = '$_svgImageBaseUrl/Hamburger menu.svg';
-  static const String search = '$_svgImageBaseUrl/search.svg';
-  static const String transIcon = '$_svgImageBaseUrl/trans_icon.svg';
-  static const String noData = '$_svgImageBaseUrl/no_data.svg';
+  //Png OnBoarding Assets
+  static const String obMobile1 = '$_pngImageBaseUrl/ob_mobile1.png';
+  static const String obMobile2 = '$_pngImageBaseUrl/ob_mobile2.png';
+  static const String lock = '$_pngImageBaseUrl/lock.png';
+  static const String monthChart = '$_pngImageBaseUrl/month_chart.png';
+  static const String directPosition = '$_pngImageBaseUrl/direct_position.png';
+  static const String contact = '$_pngImageBaseUrl/contact.png';
+  static const String payment = '$_pngImageBaseUrl/payment.png';
 
-  //Jpg Assets
-  static const String welcome = "$_lottieImageBaseUrl/welcome.json";
-  static const String createAccount = "$_lottieImageBaseUrl/create_account.json";
+ //Png login Assets
+  static const String google = '$_pngImageBaseUrl/google.png';
+  static const String apple = '$_pngImageBaseUrl/apple.png';
 
-  //Png Assets
-  static const String onBoarding1 = '$_pngImageBaseUrl/image1.png';
-  static const String onBoarding2 = '$_pngImageBaseUrl/image2.png';
-  static const String onBoarding3 = '$_pngImageBaseUrl/image3.png';
-
-  static const String carouselPic1 = '$_pngImageBaseUrl/carousel_image1.png';
-  static const String carouselPic2 = '$_pngImageBaseUrl/carousel_image2.png';
-  static const String carouselPic3 = '$_pngImageBaseUrl/carousel_image3.png';
-
+  //Png success screen Asset
+  static const String success = '$_pngImageBaseUrl/successful.png';
 }

@@ -69,21 +69,21 @@ class _AppTextFieldState extends State<AppTextField> {
       decoration: const InputDecoration(
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(5)),
-            borderSide: BorderSide(color: kGrayScale1, width: 0.7)
+            borderSide: BorderSide(color: athensGray, width: 0.7)
         ),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(5)),
-            borderSide: BorderSide(color: kGrayScale1, width: 0.7)
+            borderSide: BorderSide(color: athensGray, width: 0.7)
         ),
         focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(5)),
-            borderSide: BorderSide(color: kGrayScale1, width: 0.7)
+            borderSide: BorderSide(color: athensGray, width: 0.7)
         ),
         errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(5)),
-            borderSide: BorderSide(color: kGrayScale1, width: 0.7)
+            borderSide: BorderSide(color: athensGray, width: 0.7)
         ),
-        fillColor: kGrayScale1,
+        fillColor: athensGray,
         filled: true,
         isDense: true,
         contentPadding: EdgeInsets.all(15),

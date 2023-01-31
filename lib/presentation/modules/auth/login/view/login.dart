@@ -1,13 +1,11 @@
 import 'package:assessment/presentation/modules/auth/login/controller/controller.dart';
-import 'package:assessment/presentation/modules/auth/sign_up/view/sign_up.dart';
-import 'package:assessment/presentation/modules/dashboard/home/views/home_screen.dart';
+import 'package:assessment/presentation/modules/auth/registration/view/sign_up.dart';
+import 'package:assessment/presentation/modules/auth/registration/view/success_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import '../../../../../app/constants/app_string/strings.dart';
 import '../../../../../app/shared_widget/button_widget.dart';
-import '../../../../../app/shared_widget/clipper.dart';
 import '../../../../../app/shared_widget/cutom_formfield_widget.dart';
 import '../../../../../app/utils/asset_path.dart';
 import '../../../../../app/utils/color_palette.dart';
@@ -24,15 +22,18 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _State extends State<LoginScreen> {
+  final formKeyLogin = GlobalKey <FormState>();
+  final scaffoldKeyLogin = GlobalKey <ScaffoldState>();
 
   void loginUser(BuildContext context, LoginController controller)async{
-    if(controller.formKeyLogin.currentState!.validate()){
-      controller.formKeyLogin.currentState!.save();
+    if(formKeyLogin.currentState!.validate()){
+      formKeyLogin.currentState!.save();
       ProgressDialogHelper().loadingState;
       await controller.login();
       if(controller.viewState.state == ResponseState.COMPLETE){
         ProgressDialogHelper().loadStateTerminated;
-        Get.offAll(()=> const HomeScreen());
+        Get.offAll(()=> const SuccessScreen());
+        FlushBarHelper(context, "Login Successful").showErrorBar;
       }else if(controller.viewState.state == ResponseState.ERROR){
         ProgressDialogHelper().loadStateTerminated;
         FlushBarHelper(context, controller.errorMessage == Strings.emptyString ? Strings.internalServerError : controller.errorMessage).showErrorBar;
@@ -47,47 +48,35 @@ class _State extends State<LoginScreen> {
         builder: (controller){
       return SafeArea(top: false, bottom: false,
         child: Scaffold(
-          key: controller.scaffoldKeyLogin,
-          body: Stack(children: [
-            ClipPath(
-                clipper: ClippingClass(),
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.45,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(colors: primaryGradient),
-                      borderRadius: BorderRadius.vertical(
-                        bottom: Radius.circular(10),
-                      )),
-                )),
-            Container(
-              padding: const EdgeInsets.only(left: 35, top: 80),
-              child: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text("Welcome Back", style: TextStyle(color: Colors.black, fontSize: 35, fontWeight: FontWeight.bold),),
-                  const SizedBox(height: 10,),
-                  const Text("Expense\nManager", style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.w400),),
-                  const SizedBox(height: 5,),
-                  Align(alignment: Alignment.topCenter,
-                    child: Lottie.asset(AssetPath.welcome, height: 150, width: 150),
-                  )
-                ],
+          backgroundColor: white,
+          appBar: AppBar(
+            elevation: 0, backgroundColor: white,
+            centerTitle: true,
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 10.0, top: 5),
+              child: Container(
+                height: 40, width: 40,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), border: Border.all(color: paleSky)),
+                child: const Icon(Icons.arrow_back_ios_new, color: ebony,),
               ),
             ),
-            SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.only(right: 35, left: 35, top: MediaQuery.of(context).size.height * 0.5),
-                child: Form(
-                  key: controller.formKeyLogin,
-                  child: Column(children: [
+          ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Form(
+              key: formKeyLogin,
+              child: ListView(children: [
+                const SizedBox(height: 30,),
+                const Text("Hi There! 👋", style: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.w600),),
+                const SizedBox(height: 8,),
+                const Text("Welcome back, Sign in to your account", style: TextStyle(color: paleSky, fontSize: 16, fontWeight: FontWeight.w400),),
+                const SizedBox(height: 32,),
                     FormFieldWidget(
-                      controller: controller.phoneNumberController,
-                      hintText: "Phone Number",
-                      validator: Validator.isPhone,
+                      controller: controller.emailController,
+                      hintText: "Email",
+                      validator: Validator.isValidEmailAddress,
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    const SizedBox(height: 16,),
                     FormFieldWidget(
                       validator: Validator.isStrongPassword,
                       controller: controller.passwordController, keyboardType: TextInputType.visiblePassword,
@@ -95,36 +84,76 @@ class _State extends State<LoginScreen> {
                       hintText: "Password", obscureText: controller.isObscuredText,
                       suffixIcon: IconButton(onPressed: (){
                         controller.toggleObscuredText();
-                      }, icon: Icon(controller.isObscuredText == false ? Icons.visibility : Icons.visibility_off, color: Colors.black,)),
+                      }, icon: Icon(controller.isObscuredText == false ? Icons.visibility_outlined : Icons.visibility_off_outlined, color: Colors.black,)),
                     ),
                     const SizedBox(
-                      height: 40,
+                      height: 24,
                     ),
+                    Text("Forgot Password?", style: Theme.of(context).textTheme.bodyText1!.copyWith(color: atoll, fontSize: 16, fontWeight: FontWeight.w600)),
+                const SizedBox(
+                  height: 24,
+                ),
                     ButtonWidget(onPressed: (){
                       loginUser(context, controller);
                     },
-                      buttonText: "LOGIN",
-                      height: 50, borderRadius: 8, buttonTextStyle: const TextStyle(color: kWhite),
+                      buttonText: "Sign In",
+                      height: 56, borderRadius: 16, buttonTextStyle: const TextStyle(color: white, fontWeight: FontWeight.w700, fontSize: 16),
                       width: double.maxFinite, buttonColor: Colors.black,
                     ),
-                    const SizedBox(height: 40,),
-                    Align(alignment: Alignment.bottomCenter,
-                      child: RichText(textAlign: TextAlign.center, text: TextSpan(text: "Don't have an account?  ",
-                          style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12,),
-                          children: [
-                            TextSpan(text: "Create Account", recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                Get.offAll(()=> const SignUp());
-                              },
-                                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500, decoration: TextDecoration.underline)),
-                          ]
-                      )),
-                    ),
-                  ]),
+                const SizedBox(
+                  height: 42.5,
                 ),
-              ),
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(height: 1,  width: MediaQuery.of(context).size.width / 3, color: athensGray,),
+                    Text("OR", style: Theme.of(context).textTheme.bodyText1!.copyWith(color: paleSky, fontSize: 14, fontWeight: FontWeight.w400)),
+                    Container(height: 1,  width: MediaQuery.of(context).size.width / 3, color: athensGray,),
+                  ],
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ButtonWidget(
+                      boundaryColor: paleSky,
+                      onPressed: (){
+                    },
+                      buttonIcon: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Image.asset(AssetPath.google, height: 20, width: 20),
+                      ),
+                      width: MediaQuery.of(context).size.width /2.5, borderRadius: 16,
+                      buttonTextStyle: const TextStyle(color: white, fontWeight: FontWeight.w700, fontSize: 16),
+                      height: 56, buttonColor: white,
+                    ),
+                    ButtonWidget(
+                      boundaryColor: paleSky,
+                      onPressed: (){
+                    },
+                      buttonIcon: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Image.asset(AssetPath.apple, height: 20, width: 20),
+                      ),
+                      width: MediaQuery.of(context).size.width /2.5, borderRadius: 16, buttonTextStyle: const TextStyle(color: white, fontWeight: FontWeight.w700, fontSize: 16),
+                      height: 56, buttonColor: white,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 180,),
+                RichText(textAlign: TextAlign.center, text: TextSpan(text: "Don't have an account?  ",
+                    style: const TextStyle(color: paleSky, fontWeight: FontWeight.w400, fontSize: 12,),
+                    children: [
+                      TextSpan(text: "Create Account", recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Get.offAll(()=> const SignUp());
+                        },
+                          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: atoll)),
+                    ]
+                ))
+              ]),
             ),
-          ]),
+          ),
         ),
       );
     });
