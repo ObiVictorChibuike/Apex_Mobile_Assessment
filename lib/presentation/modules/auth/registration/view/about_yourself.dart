@@ -141,7 +141,8 @@ class _AboutYourselfState extends State<AboutYourself> {
                     ),
                     const SizedBox(height: 24,),
                     ButtonWidget(onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const SetPinCode()));
+                      registerUser(context,controller);
+                      //Navigator.push(context, MaterialPageRoute(builder: (context)=> const SetPinCode()));
                     },
                       buttonText: "Continue",
                       height: 56, borderRadius: 16, buttonTextStyle: const TextStyle(color: white, fontWeight: FontWeight.w700, fontSize: 16),
